@@ -1,0 +1,2 @@
+include ':app', ':registration', ':network', ':generic_recycler_adapter'
+rootProject.name='KotlinDemo'

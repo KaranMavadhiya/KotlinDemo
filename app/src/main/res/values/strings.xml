@@ -1,0 +1,12 @@
+<resources>
+
+    <string name="screen_main">Kotlin Demo</string>
+
+    <string name="title_registration">registration</string>
+
+    <string name="str_tap_to_refresh">Tap to Refresh</string>
+    <string name="str_no_data">Looks like there is no data available.</string>
+
+    <string name="action_login">Login</string>
+
+</resources>

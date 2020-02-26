@@ -1,0 +1,94 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+
+    signingConfigs {
+        release
+    }
+
+    compileSdkVersion rootProject.compileSdkVersion
+
+    defaultConfig {
+
+        applicationId "com.kotlindemo"
+
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode rootProject.versionCode
+        versionName rootProject.versionName
+    }
+
+    buildTypes {
+        debug {
+            applicationIdSuffix ".dev"
+            resValue "string", "app_name", "Kotlin(QA)"
+            minifyEnabled false
+        }
+        release {
+            applicationIdSuffix ".kotlin"
+            resValue "string", "app_name", "Kotlin"
+
+            minifyEnabled true
+            shrinkResources false
+            signingConfig signingConfigs.release
+
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    dynamicFeatures = [":registration"]
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':network')
+
+    api 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    // Kotlin
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    api "androidx.core:core-ktx:$ktx_version"
+
+    // Design
+    api "androidx.appcompat:appcompat:$appcompat_version"
+    api "com.android.support:design:$design_version"
+    api "com.google.android.material:material:$material_version"
+
+    // Constraint Layout
+    api "androidx.constraintlayout:constraintlayout:$constraintlayout_version"
+
+    // Navigation Controller
+    api "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    api "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    // LiveData & ViewModel
+    api "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+}
+
+Properties properties = new Properties()
+def propertiesFile = new File('keystore.properties')
+if (propertiesFile.canRead()) {
+    properties.load(new FileInputStream(propertiesFile))
+
+    if (properties != null && properties.containsKey('STORE_FILE') && properties.containsKey('KEY_ALIAS') && properties.containsKey('PASSWORD')) {
+        android.signingConfigs.release.storeFile = file(properties['STORE_FILE'])
+        android.signingConfigs.release.storePassword = properties['PASSWORD']
+        android.signingConfigs.release.keyAlias = properties['KEY_ALIAS']
+        android.signingConfigs.release.keyPassword = properties['PASSWORD']
+    } else {
+        println 'signing.properties found but some entries are missing'
+        android.buildTypes.release.signingConfig = null
+    }
+
+} else {
+    println 'signing.properties not found'
+    android.buildTypes.release.signingConfig = null
+}
