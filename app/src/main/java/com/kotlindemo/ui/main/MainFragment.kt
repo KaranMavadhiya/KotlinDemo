@@ -20,6 +20,7 @@ class MainFragment  : BaseFragment(), View.OnClickListener {
 
     override fun initializeComponent(view: View?) {
         layoutEmptyView.setOnClickListener(this)
+        layoutEmptyView.setMessage(getString(R.string.str_no_data))
     }
 
     override fun onClick(v: View?) {
