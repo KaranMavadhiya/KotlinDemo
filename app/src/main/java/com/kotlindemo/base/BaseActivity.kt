@@ -34,6 +34,8 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener {
      */
     abstract fun initializeComponents()
 
+    private var progressDialog: ProgressDialog? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutRes())
@@ -129,6 +131,14 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener {
 
     fun AppCompatActivity.replaceFragment(fragment: Fragment, frameId: Int) {
         supportFragmentManager.inTransaction{replace(frameId, fragment)}
+    }
+
+    fun showProgressDialog(supportFragmentManager: FragmentManager?) {
+        progressDialog = ProgressDialog.showProgressDialog(supportFragmentManager)
+    }
+
+    fun dismissProgressDialog(){
+        progressDialog?.dismiss()
     }
 
     companion object {

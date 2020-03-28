@@ -6,32 +6,22 @@ import android.view.animation.AnimationUtils
 import com.kotlindemo.R
 import com.kotlindemo.base.BaseActivity
 import com.kotlindemo.ui.main.MainActivity
-import com.kotlindemo.utils.Constants
-import com.kotlindemo.utils.preferences.PreferenceConstant
-import com.kotlindemo.utils.preferences.getBoolean
-import com.kotlindemo.utils.preferences.putBoolean
 import kotlinx.android.synthetic.main.activity_splash.*
 
 
 class SplashActivity : BaseActivity() , Animation.AnimationListener {
 
-    private val mRunnable = Runnable { this.performNavigation() }
-
     private fun performNavigation() {
-        if (PreferenceConstant.isUserLogin.getBoolean()!!)
-            startActivity(MainActivity::class.java)
-        else
-            startActivity(Constants.LOGIN_ACTIVITY)
+        startActivity(MainActivity::class.java)
         finish()
     }
 
     private fun executeHandler() {
-        val delayMillis: Long = 2000
+        val delayMillis: Long = 3000
         /*
          * Handler is used to set some delay on this screen
          */
-        val handler = Handler()
-        handler.postDelayed(mRunnable, delayMillis)
+        Handler().postDelayed(Runnable { performNavigation() },delayMillis)
     }
 
     override fun getLayoutRes(): Int {

@@ -71,6 +71,9 @@ dependencies {
 
     // LiveData & ViewModel
     api "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+
+    // Google
+    api "com.google.code.gson:gson:$gson_version"
 }
 
 Properties properties = new Properties()

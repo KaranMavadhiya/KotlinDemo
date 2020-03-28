@@ -20,10 +20,10 @@ class SignupRequestModel {
 
     class DialCode {
 
-        lateinit var countryCode : String
-
-        lateinit var dialCode : String
-
         lateinit var countryName : String
+
+        lateinit var countryDialCode : String
+
+        lateinit var countryCode : String
     }
 }

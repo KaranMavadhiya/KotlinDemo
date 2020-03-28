@@ -1,13 +1,14 @@
 package com.kotlindemo.utils
 
 import android.view.View
-import android.view.animation.Animation
 import android.view.animation.OvershootInterpolator
-import android.view.animation.ScaleAnimation
-
 
 object ViewUtil {
 
+    /**
+     * @param view : View object
+     * @param visibility : true for Visible else false
+     */
     fun setVisibility(view: View, visibility: Boolean) {
         if (visibility) {
             if (view.visibility == View.GONE) {
@@ -20,7 +21,7 @@ object ViewUtil {
         }
     }
 
-    /*
+    /**
      * @param view : View object for animation
      * @param delay : Delay for view animation
      * @param duration : Duration of animation

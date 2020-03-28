@@ -1,29 +1,23 @@
 package com.kotlindemo.registration.ui.signup
 
-import android.text.Editable
 import android.text.SpannableString
 import android.text.TextUtils
-import android.text.TextWatcher
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.text.style.ForegroundColorSpan
 import android.view.View
-import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.kotlindemo.base.BaseFragment
-import com.kotlindemo.base.ProgressDialog
 import com.kotlindemo.registration.R
 import com.kotlindemo.utils.*
 import kotlinx.android.synthetic.main.fragment_signup.*
 import kotlinx.android.synthetic.main.layout_registration_header.*
 
 class SignupFragment  : BaseFragment(), View.OnClickListener {
-
-    private lateinit var progress: ProgressDialog
 
     private lateinit var signupViewModel: SignupViewModel
 
@@ -40,19 +34,39 @@ class SignupFragment  : BaseFragment(), View.OnClickListener {
         signupViewModel = ViewModelProvider(this).get(SignupViewModel::class.java)
 
         // Update data to viewModel
-        editName.afterTextChanged(signupViewModel::setName)
-        editEmail.afterTextChanged(signupViewModel::setEmail)
-        editMobileNumber.afterTextChanged(signupViewModel::setMobile)
-        editPassword.afterTextChanged(signupViewModel::setPassword)
+        updateData()
+
 
         // Show/Hide loader based on observer Boolean
         signupViewModel.isLoading().observe(this, Observer {
             if (it)
-                progress = ProgressDialog.showProgressDialog(activity?.supportFragmentManager)
+               showProgressDialog(activity?.supportFragmentManager)
             else
-                progress.dismiss()
+               dismissProgressDialog()
         })
 
+    }
+
+    private fun updateData() {
+        editName.afterTextChanged {
+            inputName.isErrorEnabled = false
+            signupViewModel.setName(it)
+        }
+        editEmail.afterTextChanged {
+            inputEmail.isErrorEnabled = false
+            signupViewModel.setEmail(it)
+        }
+        editMobileNumber.afterTextChanged {
+            inputMobileNumber.isErrorEnabled = false
+            signupViewModel.setMobile(it)
+        }
+        editPassword.afterTextChanged {
+            inputPassword.isErrorEnabled = false
+            signupViewModel.setPassword(it)
+        }
+        editConfirmPassword.afterTextChanged {
+            inputConfirmPassword.isErrorEnabled = false
+        }
     }
 
     private fun setupUI() {
@@ -76,22 +90,9 @@ class SignupFragment  : BaseFragment(), View.OnClickListener {
 
         // set onClick
         headerImageBack.setOnClickListener(this)
+        editCountryCode.setOnClickListener(this)
         buttonSubmit.setOnClickListener(this)
 
-    }
-
-    private fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
-        this.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun afterTextChanged(editable: Editable?) {
-                afterTextChanged.invoke(editable.toString())
-            }
-        })
     }
 
     override fun onClick(v: View?) {
@@ -112,55 +113,55 @@ class SignupFragment  : BaseFragment(), View.OnClickListener {
             TextUtils.isEmpty(editName.text.toString().trim()) -> {
                 editName.requestFocus()
                 ViewUtil.animateView(inputName, 10, 200)
-                editName.error = getString(R.string.err_please_enter_full_name)
+                inputName.error = getString(R.string.err_please_enter_full_name)
                 false
             }
             TextUtils.isEmpty(editEmail.text.toString().trim()) -> {
                 editEmail.requestFocus()
                 ViewUtil.animateView(inputEmail, 10, 200)
-                editEmail.error = getString(R.string.err_please_enter_email_address)
+                inputEmail.error = getString(R.string.err_please_enter_email_address)
                 false
             }
             !CommonUtils.isValidEmailAddress(editEmail.text.toString().trim()) -> {
                 editEmail.requestFocus()
                 ViewUtil.animateView(inputEmail, 10, 200)
-                editEmail.error = getString(R.string.err_please_enter_valid_email_address)
+                inputEmail.error = getString(R.string.err_please_enter_valid_email_address)
                 false
             }
             TextUtils.isEmpty(editMobileNumber.text.toString().trim()) -> {
                 editMobileNumber.requestFocus()
                 ViewUtil.animateView(inputMobileNumber, 10, 200)
-                editMobileNumber.error = getString(R.string.err_please_enter_mobile_number)
+                inputMobileNumber.error = getString(R.string.err_please_enter_mobile_number)
                 false
             }
             !CommonUtils.isValidPhoneNumber(editMobileNumber.text.toString().trim()) -> {
                 editMobileNumber.requestFocus()
                 ViewUtil.animateView(inputMobileNumber, 10, 200)
-                editMobileNumber.error = getString(R.string.err_please_enter_valid_mobile_number)
+                inputMobileNumber.error = getString(R.string.err_please_enter_valid_mobile_number)
                 false
             }
             TextUtils.isEmpty(editPassword.text.toString().trim()) -> {
                 editPassword.requestFocus()
                 ViewUtil.animateView(inputPassword, 10, 200)
-                editPassword.error = getString(R.string.err_please_enter_password)
+                inputPassword.error = getString(R.string.err_please_enter_password)
                 false
             }
             !CommonUtils.isValidPassword(editPassword.text.toString().trim()) -> {
                 editPassword.requestFocus()
                 ViewUtil.animateView(inputPassword, 10, 200)
-                editPassword.error = getString(R.string.err_please_enter_valid_password)
+                inputPassword.error = getString(R.string.err_please_enter_valid_password)
                 false
             }
             TextUtils.isEmpty(editConfirmPassword.text.toString().trim()) -> {
                 editConfirmPassword.requestFocus()
                 ViewUtil.animateView(inputConfirmPassword, 10, 200)
-                editConfirmPassword.error = getString(R.string.err_please_enter_confirm_password)
+                inputConfirmPassword.error = getString(R.string.err_please_enter_confirm_password)
                 false
             }
             editPassword.text.toString().trim() != editConfirmPassword.text.toString().trim() -> {
                 editConfirmPassword.requestFocus()
                 ViewUtil.animateView(inputConfirmPassword, 10, 200)
-                editConfirmPassword.error =  getString(R.string.err_password_and_confirm_password_not_match)
+                inputConfirmPassword.error =  getString(R.string.err_password_and_confirm_password_not_match)
                 false
             }
             else -> true

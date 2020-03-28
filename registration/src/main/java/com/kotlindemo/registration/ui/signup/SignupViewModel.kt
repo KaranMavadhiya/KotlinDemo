@@ -48,6 +48,6 @@ class SignupViewModel(application: Application) : BaseViewModel(application) {
         LogUtil.e("LoginViewModel : ", signupRequestModel.platform)
         LogUtil.e("LoginViewModel : ", signupRequestModel.deviceToken)
 
-        Handler().postDelayed({ isLoading.value = false }, 3000)
+        Handler().postDelayed({ isLoading.value = false }, 2000)
     }
 }

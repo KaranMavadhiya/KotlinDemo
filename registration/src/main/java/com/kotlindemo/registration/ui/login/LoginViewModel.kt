@@ -3,8 +3,12 @@ package com.kotlindemo.registration.ui.login
 import android.app.Application
 import android.content.Context
 import android.os.Handler
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.kotlindemo.base.BaseViewModel
 import com.kotlindemo.registration.model.request.LoginRequestModel
+import com.kotlindemo.registration.model.response.DialCode
+import com.kotlindemo.registration.model.response.UserModel
 import com.kotlindemo.utils.LogUtil
 import com.kotlindemo.utils.preferences.PreferenceConstant
 import com.kotlindemo.utils.preferences.putBoolean
@@ -19,6 +23,12 @@ class LoginViewModel(application: Application) : BaseViewModel(application) {
         loginRequestModel.deviceToken = uniqueId
     }
 
+    var userData = MutableLiveData<UserModel>()
+
+    fun getUserData(): LiveData<UserModel> {
+        return userData
+    }
+
     fun setEmail(email: String) {
         loginRequestModel.email = email
     }
@@ -31,15 +41,22 @@ class LoginViewModel(application: Application) : BaseViewModel(application) {
 
         isLoading.value = true
 
-        LogUtil.e("LoginViewModel : ", loginRequestModel.email)
-        LogUtil.e("LoginViewModel : ", loginRequestModel.password)
-        LogUtil.e("LoginViewModel : ", loginRequestModel.platform)
-        LogUtil.e("LoginViewModel : ", loginRequestModel.deviceToken)
+        LogUtil.d("LoginViewModel : ", loginRequestModel.email)
+        LogUtil.d("LoginViewModel : ", loginRequestModel.password)
+        LogUtil.d("LoginViewModel : ", loginRequestModel.platform)
+        LogUtil.d("LoginViewModel : ", loginRequestModel.deviceToken)
 
-        Handler().postDelayed({ isLoading.value = false }, 3000)
+        Handler().postDelayed({
 
-        // set is isUserLogin into Shared Preference after successful login
-        // PreferenceConstant.isUserLogin.putBoolean(true)
+            isLoading.value = false
 
+            val dialCode:DialCode = DialCode("India","IN","+91")
+            val userModel:UserModel = UserModel("A123","Karan Mavadhiya","Karan.mavadhiya89@gmail.com",dialCode,9998889182,"A123456879XYZ")
+            userData.postValue(userModel)
+
+            // set is isUserLogin into Shared Preference after successful login
+            PreferenceConstant.isUserLogin.putBoolean(true)
+
+        }, 2000)
     }
 }

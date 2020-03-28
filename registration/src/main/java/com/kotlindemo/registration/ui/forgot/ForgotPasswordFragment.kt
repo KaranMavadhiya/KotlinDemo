@@ -13,11 +13,14 @@ import com.kotlindemo.registration.R
 import com.kotlindemo.utils.CommonUtils
 import com.kotlindemo.utils.ViewUtil
 import kotlinx.android.synthetic.main.fragment_forgot_password.*
+import kotlinx.android.synthetic.main.fragment_forgot_password.buttonSubmit
+import kotlinx.android.synthetic.main.fragment_forgot_password.editEmail
+import kotlinx.android.synthetic.main.fragment_forgot_password.imageLogo
+import kotlinx.android.synthetic.main.fragment_forgot_password.inputEmail
+import kotlinx.android.synthetic.main.fragment_signup.*
 import kotlinx.android.synthetic.main.layout_registration_header.*
 
 class ForgotPasswordFragment  : BaseFragment(), View.OnClickListener {
-
-    private lateinit var progress: ProgressDialog
 
     private lateinit var forgotPasswordViewModel: ForgotPasswordViewModel
 
@@ -34,14 +37,17 @@ class ForgotPasswordFragment  : BaseFragment(), View.OnClickListener {
         forgotPasswordViewModel = ViewModelProvider(this).get(ForgotPasswordViewModel::class.java)
 
         // Update data to viewModel
-        editEmail.afterTextChanged(forgotPasswordViewModel::setEmail)
+        editEmail.afterTextChanged {
+            inputEmail.isErrorEnabled = false
+            forgotPasswordViewModel.setEmail(it)
+        }
 
         // Show/Hide loader based on observer Boolean
         forgotPasswordViewModel.isLoading().observe(this, Observer {
             if (it)
-                progress = ProgressDialog.showProgressDialog(activity?.supportFragmentManager)
+               showProgressDialog(activity?.supportFragmentManager)
             else
-                progress.dismiss()
+               dismissProgressDialog()
         })
     }
 
@@ -54,20 +60,6 @@ class ForgotPasswordFragment  : BaseFragment(), View.OnClickListener {
         headerImageBack.setOnClickListener(this)
         buttonSubmit.setOnClickListener(this)
 
-    }
-
-    private fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
-        this.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun afterTextChanged(editable: Editable?) {
-                afterTextChanged.invoke(editable.toString())
-            }
-        })
     }
 
     override fun onClick(v: View?) {
@@ -88,13 +80,13 @@ class ForgotPasswordFragment  : BaseFragment(), View.OnClickListener {
             TextUtils.isEmpty(editEmail.text.toString().trim()) -> {
                 editEmail.requestFocus()
                 ViewUtil.animateView(inputEmail, 10, 200)
-                editEmail.error = getString(R.string.err_please_enter_email_address)
+                inputEmail.error = getString(R.string.err_please_enter_email_address)
                 false
             }
             !CommonUtils.isValidEmailAddress(editEmail.text.toString().trim()) -> {
                 editEmail.requestFocus()
                 ViewUtil.animateView(inputEmail, 10, 200)
-                editEmail.error = getString(R.string.err_please_enter_valid_email_address)
+                inputEmail.error = getString(R.string.err_please_enter_valid_email_address)
                 false
             }
             else -> true

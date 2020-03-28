@@ -1,11 +1,15 @@
 package com.kotlindemo.base
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 
 abstract class BaseFragment : Fragment() {
 
@@ -24,6 +28,8 @@ abstract class BaseFragment : Fragment() {
      */
     abstract fun initializeComponent(view: View?)
 
+    private var progressDialog: ProgressDialog? = null
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(getLayoutRes(), container, false)
     }
@@ -31,5 +37,27 @@ abstract class BaseFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initializeComponent(view)
+    }
+
+    fun showProgressDialog(supportFragmentManager: FragmentManager?) {
+        progressDialog = ProgressDialog.showProgressDialog(supportFragmentManager)
+    }
+
+    fun dismissProgressDialog(){
+        progressDialog?.dismiss()
+    }
+
+    fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
+        this.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun afterTextChanged(editable: Editable?) {
+                afterTextChanged.invoke(editable.toString())
+            }
+        })
     }
 }

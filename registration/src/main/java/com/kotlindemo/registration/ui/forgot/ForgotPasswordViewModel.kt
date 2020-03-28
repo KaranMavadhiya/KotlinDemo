@@ -27,6 +27,6 @@ class ForgotPasswordViewModel(application: Application) : BaseViewModel(applicat
         LogUtil.e("LoginViewModel : ", forgotPasswordRequestModel.platform)
         LogUtil.e("LoginViewModel : ", forgotPasswordRequestModel.deviceToken)
 
-        Handler().postDelayed({ isLoading.value = false }, 3000)
+        Handler().postDelayed({ isLoading.value = false }, 2000)
     }
 }
