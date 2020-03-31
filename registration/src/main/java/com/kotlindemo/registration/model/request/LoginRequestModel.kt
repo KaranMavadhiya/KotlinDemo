@@ -4,11 +4,11 @@ import com.kotlindemo.utils.Constants
 
 class LoginRequestModel {
 
-    lateinit var email: String
+    lateinit var emailId: String
 
     lateinit var password: String
 
-    var platform = Constants.PLATFORM
+    var deviceType = Constants.PLATFORM
 
     lateinit var deviceToken: String
 

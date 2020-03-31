@@ -1,20 +1,17 @@
 package com.kotlindemo.registration.ui.login
 
 import android.app.Application
-import android.os.Handler
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.kotlindemo.base.BaseViewModel
 import com.kotlindemo.registration.api.APIHelper
-import com.kotlindemo.utils.LogUtil
-import com.kotlindemo.utils.preferences.PreferenceConstant
-import com.kotlindemo.utils.preferences.putBoolean
 import com.kotlindemo.registration.model.request.LoginRequestModel
-import com.kotlindemo.registration.model.response.DialCode
 import com.kotlindemo.registration.model.response.UserModel
+import com.kotlindemo.utils.LogUtil
 import com.network.base.BaseRequestModel
 import com.network.base.BaseResponseModel
-import retrofit2.Callback
+import retrofit2.Call
+import retrofit2.Response
 
 class LoginViewModel(application: Application) : BaseViewModel(application) {
 
@@ -34,24 +31,22 @@ class LoginViewModel(application: Application) : BaseViewModel(application) {
         isLoading.value = true
 
         val requestModel = BaseRequestModel(loginRequestModel)
+        APIHelper.getInstance().callLoginApi(loginRequestModel).enqueue(object :
+        retrofit2.Callback<BaseResponseModel<UserModel>> {
 
+            override fun onFailure(call: Call<BaseResponseModel<UserModel>>, t: Throwable) {
+                isLoading.value = false
+            }
 
-        LogUtil.d("LoginViewModel : ", loginRequestModel.email)
-        LogUtil.d("LoginViewModel : ", loginRequestModel.password)
-        LogUtil.d("LoginViewModel : ", loginRequestModel.platform)
-        LogUtil.d("LoginViewModel : ", loginRequestModel.deviceToken)
-
-        Handler().postDelayed({
-
-            isLoading.value = false
-
-            val dialCode: DialCode = DialCode("India","IN","+91")
-            val userModel: UserModel = UserModel("A123","Karan Mavadhiya","Karan.mavadhiya89@gmail.com",dialCode,9998889182,"A123456879XYZ")
-            userData.postValue(userModel)
-
-            // set is isUserLogin into Shared Preference after successful login
-            PreferenceConstant.isUserLogin.putBoolean(true)
-
-        }, 2000)
+            override fun onResponse(call: Call<BaseResponseModel<UserModel>>, response: Response<BaseResponseModel<UserModel>>) {
+                isLoading.value = false
+                if (response.body()?.status == 1) {
+                    val responseModel =  response.body()?.getResponseData(UserModel::class.java)
+                    userData.value = responseModel
+                }else{
+                    response.body()?.message?.let { LogUtil.e("LOGIN", it) }
+                }
+            }
+        })
     }
 }

@@ -59,7 +59,7 @@ class LoginFragment  : BaseFragment(), View.OnClickListener {
     private fun updateData() {
         editEmail.afterTextChanged {
             inputEmail.isErrorEnabled = false
-            loginViewModel.loginRequestModel.email = it
+            loginViewModel.loginRequestModel.emailId = it
         }
         editPassword.afterTextChanged {
             inputPassword.isErrorEnabled = false
