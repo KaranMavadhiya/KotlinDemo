@@ -12,12 +12,10 @@ import com.kotlindemo.registration.model.response.UserModel
 import com.kotlindemo.utils.LogUtil
 import com.kotlindemo.utils.preferences.PreferenceConstant
 import com.kotlindemo.utils.preferences.putBoolean
-import com.kotlindemo.utils.toMD5
-
 
 class LoginViewModel(application: Application) : BaseViewModel(application) {
 
-    private val loginRequestModel: LoginRequestModel = LoginRequestModel()
+    val loginRequestModel: LoginRequestModel = LoginRequestModel()
 
     init {
         loginRequestModel.deviceToken = uniqueId
@@ -27,14 +25,6 @@ class LoginViewModel(application: Application) : BaseViewModel(application) {
 
     fun getUserData(): LiveData<UserModel> {
         return userData
-    }
-
-    fun setEmail(email: String) {
-        loginRequestModel.email = email
-    }
-
-    fun setPassword(password: String) {
-        loginRequestModel.password = password.toMD5()
     }
 
     fun apiCallLogin(context: Context) {

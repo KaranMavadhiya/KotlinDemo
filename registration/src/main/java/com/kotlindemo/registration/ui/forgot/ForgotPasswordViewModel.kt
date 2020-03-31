@@ -9,14 +9,10 @@ import com.kotlindemo.utils.LogUtil
 
 class ForgotPasswordViewModel(application: Application) : BaseViewModel(application) {
 
-    private val forgotPasswordRequestModel: ForgotPasswordRequestModel = ForgotPasswordRequestModel()
+    val forgotPasswordRequestModel: ForgotPasswordRequestModel = ForgotPasswordRequestModel()
 
     init {
         forgotPasswordRequestModel.deviceToken = uniqueId
-    }
-
-    fun setEmail(email: String) {
-        forgotPasswordRequestModel.email = email
     }
 
     fun apiCallForgotPassword(context: Context) {

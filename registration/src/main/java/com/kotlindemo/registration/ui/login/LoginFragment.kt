@@ -10,6 +10,7 @@ import com.kotlindemo.registration.R
 import com.kotlindemo.utils.CommonUtils
 import com.kotlindemo.utils.LogUtil
 import com.kotlindemo.utils.ViewUtil
+import com.kotlindemo.utils.toMD5
 import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.layout_registration_header.*
 
@@ -58,11 +59,11 @@ class LoginFragment  : BaseFragment(), View.OnClickListener {
     private fun updateData() {
         editEmail.afterTextChanged {
             inputEmail.isErrorEnabled = false
-            loginViewModel.setEmail(it)
+            loginViewModel.loginRequestModel.email = it
         }
         editPassword.afterTextChanged {
             inputPassword.isErrorEnabled = false
-            loginViewModel.setPassword(it)
+            loginViewModel.loginRequestModel.password = it.toMD5()
         }
     }
 

@@ -50,19 +50,19 @@ class SignupFragment  : BaseFragment(), View.OnClickListener {
     private fun updateData() {
         editName.afterTextChanged {
             inputName.isErrorEnabled = false
-            signupViewModel.setName(it)
+            signupViewModel.signupRequestModel.name = it
         }
         editEmail.afterTextChanged {
             inputEmail.isErrorEnabled = false
-            signupViewModel.setEmail(it)
+            signupViewModel.signupRequestModel.email = it
         }
         editMobileNumber.afterTextChanged {
             inputMobileNumber.isErrorEnabled = false
-            signupViewModel.setMobile(it)
+            signupViewModel.signupRequestModel.mobileNumber = it
         }
         editPassword.afterTextChanged {
             inputPassword.isErrorEnabled = false
-            signupViewModel.setPassword(it)
+            signupViewModel.signupRequestModel.password = it.toMD5()
         }
         editConfirmPassword.afterTextChanged {
             inputConfirmPassword.isErrorEnabled = false

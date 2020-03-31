@@ -1,23 +1,14 @@
 package com.kotlindemo.registration.ui.forgot
 
-import android.text.Editable
 import android.text.TextUtils
-import android.text.TextWatcher
 import android.view.View
-import android.widget.EditText
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.kotlindemo.base.BaseFragment
-import com.kotlindemo.base.ProgressDialog
 import com.kotlindemo.registration.R
 import com.kotlindemo.utils.CommonUtils
 import com.kotlindemo.utils.ViewUtil
 import kotlinx.android.synthetic.main.fragment_forgot_password.*
-import kotlinx.android.synthetic.main.fragment_forgot_password.buttonSubmit
-import kotlinx.android.synthetic.main.fragment_forgot_password.editEmail
-import kotlinx.android.synthetic.main.fragment_forgot_password.imageLogo
-import kotlinx.android.synthetic.main.fragment_forgot_password.inputEmail
-import kotlinx.android.synthetic.main.fragment_signup.*
 import kotlinx.android.synthetic.main.layout_registration_header.*
 
 class ForgotPasswordFragment  : BaseFragment(), View.OnClickListener {
@@ -39,7 +30,7 @@ class ForgotPasswordFragment  : BaseFragment(), View.OnClickListener {
         // Update data to viewModel
         editEmail.afterTextChanged {
             inputEmail.isErrorEnabled = false
-            forgotPasswordViewModel.setEmail(it)
+            forgotPasswordViewModel.forgotPasswordRequestModel.email = it
         }
 
         // Show/Hide loader based on observer Boolean
