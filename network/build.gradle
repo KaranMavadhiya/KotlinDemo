@@ -14,16 +14,28 @@ android {
     buildTypes {
         debug {
             minifyEnabled false
-            buildConfigField "String", "API_URL", API_DEVELOPMENT_URL
+            buildConfigField "String", "API_URL", API_DEVELOPMENT_URL // update url into gradle.properties
         }
         release {
             minifyEnabled true
-            buildConfigField "String", "API_URL", API_LIVE_URL
+            buildConfigField "String", "API_URL", API_LIVE_URL // update url into gradle.properties
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 }
 
+ext.retrofitVersion = '2.4.0'
+ext.retrofitInterceptor = '3.9.1'
+ext.gsonVersion = '2.8.6'
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Retrofit dependency
+    api "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    api "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    api "com.squareup.okhttp3:logging-interceptor:$retrofitInterceptor"
+
+    // Google
+    api "com.google.code.gson:gson:$gsonVersion"
 }

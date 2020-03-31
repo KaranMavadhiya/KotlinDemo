@@ -93,7 +93,7 @@ class LoginFragment  : BaseFragment(), View.OnClickListener {
             R.id.buttonSubmit ->{
                 when{
                     validateData() -> {
-                        context?.let { loginViewModel.apiCallLogin(it) }
+                        loginViewModel.apiCallLogin()
                     }
                 }
             }
