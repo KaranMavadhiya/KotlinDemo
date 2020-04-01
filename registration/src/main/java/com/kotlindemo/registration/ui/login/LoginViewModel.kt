@@ -8,7 +8,6 @@ import com.kotlindemo.registration.api.APIHelper
 import com.kotlindemo.registration.model.request.LoginRequestModel
 import com.kotlindemo.registration.model.response.UserModel
 import com.kotlindemo.utils.LogUtil
-import com.network.base.BaseRequestModel
 import com.network.base.BaseResponseModel
 import retrofit2.Call
 import retrofit2.Response
@@ -30,7 +29,8 @@ class LoginViewModel(application: Application) : BaseViewModel(application) {
     fun apiCallLogin() {
         isLoading.value = true
 
-        val requestModel = BaseRequestModel(loginRequestModel)
+        // val requestModel = BaseRequestModel("login",Constants.PLATFORM,loginRequestModel)
+
         APIHelper.getInstance().callLoginApi(loginRequestModel).enqueue(object :
         retrofit2.Callback<BaseResponseModel<UserModel>> {
 
