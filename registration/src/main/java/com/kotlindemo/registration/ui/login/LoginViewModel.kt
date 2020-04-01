@@ -4,11 +4,12 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.kotlindemo.base.BaseViewModel
-import com.kotlindemo.registration.api.APIHelper
+import com.kotlindemo.registration.api.NetworkInterceptor
 import com.kotlindemo.registration.model.request.LoginRequestModel
 import com.kotlindemo.registration.model.response.UserModel
 import com.kotlindemo.utils.LogUtil
 import com.network.base.BaseResponseModel
+import com.network.retrofit.RetrofitClientFactory
 import retrofit2.Call
 import retrofit2.Response
 
@@ -31,7 +32,7 @@ class LoginViewModel(application: Application) : BaseViewModel(application) {
 
         // val requestModel = BaseRequestModel("login",Constants.PLATFORM,loginRequestModel)
 
-        APIHelper.getInstance().callLoginApi(loginRequestModel).enqueue(object :
+        RetrofitClientFactory.getInstance(NetworkInterceptor::class.java).callLoginApi(loginRequestModel).enqueue(object :
         retrofit2.Callback<BaseResponseModel<UserModel>> {
 
             override fun onFailure(call: Call<BaseResponseModel<UserModel>>, t: Throwable) {
@@ -41,7 +42,7 @@ class LoginViewModel(application: Application) : BaseViewModel(application) {
             override fun onResponse(call: Call<BaseResponseModel<UserModel>>, response: Response<BaseResponseModel<UserModel>>) {
                 isLoading.value = false
                 if (response.body()?.status == 1) {
-                    val responseModel =  response.body()?.getResponseData(UserModel::class.java)
+                    val responseModel =  response.body()?.getResponseModel(UserModel::class.java)
                     userData.value = responseModel
                 }else{
                     response.body()?.message?.let { LogUtil.e("LOGIN", it) }

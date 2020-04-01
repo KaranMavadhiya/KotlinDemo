@@ -14,19 +14,19 @@ object OkHttpClientFactory {
         okHttpInstance = OkHttpClient().newBuilder()
         okHttpInstance.connectTimeout(CONNECTION_TIME_OUT, TimeUnit.MINUTES)
 
+        // Add Header if header != null and header.size > 0
         if (header != null && header.size > 0){
-
-           /* https://gist.github.com/lfmingo/768a29eafc4a9d25d75ef31e2be506f7
-            val original: Request = chain.request()
-            val builder = original.newBuilder().method(original.method(), original.body())
-            for ((key, value) in header.entries) {
-                builder.header(key, value)
+            okHttpInstance.addInterceptor { chain ->
+                val builder = chain.request().newBuilder()
+                for ((key, value) in header.entries) {
+                    builder.addHeader(key, value)
+                }
+                builder.build()
+                chain.proceed(builder.build())
             }
-            return chain.proceed(builder.build())
-            */
-
         }
 
+        // Add HttpLoggingInterceptor if isDebug true
         if (isDebug) {
             val loggingInterceptor = HttpLoggingInterceptor()
             loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY

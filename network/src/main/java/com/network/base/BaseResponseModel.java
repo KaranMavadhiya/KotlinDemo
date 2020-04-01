@@ -1,36 +1,47 @@
 package com.network.base;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.lang.reflect.Type;
 
 public class BaseResponseModel<B> extends ResponseModel{
 
+    B ResponseJson;
+
+    @Expose
     @SerializedName("data")
-    private Object data;
+    Object data;
 
     private static Gson gson;
-    private B DataResponseJson;
 
     public Object getData() {
         return data;
     }
 
-    public B getResponseData(Class<B> aModel) {
+    public B getResponseModel(Class<B> aModel) {
         setResponseJson(aModel);
-        return DataResponseJson;
+        return ResponseJson;
     }
 
-    public void setResponseData(String data) {
+    public B getResponseModel(Type typeOfObjectsList){
+        return new Gson().fromJson(getGsonWithExpose().toJson(data), typeOfObjectsList);
+    }
+
+    public void setResponse(String data) {
         this.data = data;
     }
 
     private void setResponseJson(Class<B> aModel) {
-        DataResponseJson = prepareModel(data, aModel);
+        ResponseJson = prepareModel(data, aModel);
     }
 
-    private <T> T prepareModel(Object aString, Class<T> aClass) {
-        return getGsonWithExpose().fromJson(getGsonWithExpose().toJson(aString), aClass);
+    private <T> T prepareModel(@NonNull Object aString, Class<T> aClass) {
+        return new Gson().fromJson(new Gson().toJson(aString), aClass);
     }
 
     private static Gson getGsonWithExpose() {

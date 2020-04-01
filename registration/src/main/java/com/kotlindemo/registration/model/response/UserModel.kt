@@ -1,9 +1,9 @@
 package com.kotlindemo.registration.model.response
 
 data class UserModel(
-    val userId: String,
+    val _id: String,
     val name: String,
-    val email: String,
+    val emailId: String,
     val dialCode: DialCode?,
     val mobileNumber: Long,
     val accessToken: String

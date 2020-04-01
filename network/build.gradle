@@ -27,6 +27,7 @@ android {
 ext.retrofitVersion = '2.4.0'
 ext.retrofitInterceptor = '3.9.1'
 ext.gsonVersion = '2.8.6'
+ext.annotationVersion = '1.1.0'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -38,4 +39,7 @@ dependencies {
 
     // Google
     api "com.google.code.gson:gson:$gsonVersion"
+
+    // Annotation
+    api "androidx.annotation:annotation:$annotationVersion"
 }

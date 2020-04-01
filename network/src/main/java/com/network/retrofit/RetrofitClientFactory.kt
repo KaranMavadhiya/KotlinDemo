@@ -7,19 +7,27 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClientFactory {
 
-    private fun getService(url: String): Retrofit {
+    private fun getService(header: HashMap<String, String>?, url: String): Retrofit {
         return Retrofit.Builder()
             .baseUrl(url)
-            .client(OkHttpClientFactory.getInstance(BuildConfig.DEBUG))
+            .client(OkHttpClientFactory.getInstance(header, BuildConfig.DEBUG))
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 
     fun <T> getInstance(interfaceClass: Class<T>): T {
-        return getService(BuildConfig.API_URL).create(interfaceClass)
+        return getService(null, BuildConfig.API_URL).create(interfaceClass)
+    }
+
+    fun <T> getInstance(header: HashMap<String, String>, interfaceClass: Class<T>): T {
+        return getService(header, BuildConfig.API_URL).create(interfaceClass)
     }
 
     fun <T> getInstance(url: String, interfaceClass: Class<T>): T {
-        return getService(url).create(interfaceClass)
+        return getService(null, url).create(interfaceClass)
+    }
+
+    fun <T> getInstance(url: String, header: HashMap<String, String>, interfaceClass: Class<T>): T {
+        return getService(header, url).create(interfaceClass)
     }
 }
