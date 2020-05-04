@@ -27,11 +27,9 @@ interface NetworkInterceptor {
      * login api
      *
      * {
-     * "method": "<API METHOD>",
-     * "platform": "<PLATFORM>",
+     * "deviceType": "<PLATFORM>",
+     * "deviceToken": "<DEVICE TOKEN>",
      * "data": {
-     *    "deviceToken": "<DEVICE TOKEN>",
-     *    "deviceType": "<PLATFORM>",
      *    "emailId": "<EMAIL ADDRESS>",
      *    "password": "<PASSWORD>"
      *   }

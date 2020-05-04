@@ -4,15 +4,16 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.SystemClock
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import com.kotlindemo.BuildConfig
-
 
 abstract class BaseActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -47,8 +48,12 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener {
         /*
          * Logic for hide keyboard on click
          */
-        val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(view.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+        val inputMethodManager =
+            getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(
+            view.windowToken,
+            InputMethodManager.HIDE_NOT_ALWAYS
+        )
 
         /*
          * Logic to Prevent the Launch Twice if LoginRequestModel makes
@@ -72,7 +77,7 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener {
      * @param classPath Path of the next Activity (xxx.xxx.NextActivity)
      */
     open fun startActivity(classPath: String) {
-        startActivity(Intent(Intent.ACTION_VIEW).setClassName(BuildConfig.APPLICATION_ID, classPath))
+        startActivity(Intent(Intent.ACTION_VIEW).setClassName(applicationContext, classPath))
     }
 
     /**
@@ -88,7 +93,7 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener {
      * @param resultCode Activity result code
      */
     open fun startActivity(classPath: String, resultCode: Int) {
-        startActivityForResult(Intent(Intent.ACTION_VIEW).setClassName(BuildConfig.APPLICATION_ID, classPath),resultCode)
+        startActivityForResult( Intent(Intent.ACTION_VIEW).setClassName( applicationContext, classPath ), resultCode)
     }
 
     /**
@@ -106,9 +111,51 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener {
      * @param bundle  Bundle which need to pass next Activity
      */
     open fun startActivity(classPath: String, bundle: Bundle?) {
-        val intent = Intent(Intent.ACTION_VIEW).setClassName(BuildConfig.APPLICATION_ID, classPath)
+        val intent = Intent(Intent.ACTION_VIEW).setClassName(applicationContext, classPath)
         intent.putExtras(bundle!!)
         startActivity(intent)
+    }
+
+    /**
+     * @param className Name of the next Activity (NextActivity.class)
+     * @param enterAnim enter animation
+     * @param exitAnim  exit animation
+     */
+    open fun startActivity(className: Class<*>?, enterAnim: Int, exitAnim: Int) {
+        startActivity(Intent(applicationContext, className))
+        overridePendingTransition(enterAnim, exitAnim)
+    }
+
+    /**
+     * @param classPath Path of the next Activity (xxx.xxx.NextActivity)
+     * @param enterAnim enter animation
+     * @param exitAnim  exit animation
+     */
+    open fun startActivity(classPath: String, enterAnim: Int, exitAnim: Int) {
+        startActivity(Intent(Intent.ACTION_VIEW).setClassName(applicationContext, classPath))
+        overridePendingTransition(enterAnim, exitAnim)
+    }
+
+    /**
+     * @param className  Name of the next Activity (NextActivity.class)
+     * @param resultCode Activity result code
+     * @param enterAnim  enter animation
+     * @param exitAnim   exit animation
+     */
+    open fun startActivity(className: Class<*>?, resultCode: Int, enterAnim: Int, exitAnim: Int) {
+        startActivityForResult(Intent(applicationContext, className), resultCode)
+        overridePendingTransition(enterAnim, exitAnim)
+    }
+
+    /**
+     * @param classPath  Path of the next Activity (xxx.xxx.NextActivity)
+     * @param resultCode Activity result code
+     * @param enterAnim  enter animation
+     * @param exitAnim   exit animation
+     */
+    open fun startActivity(classPath: String, resultCode: Int, enterAnim: Int, exitAnim: Int) {
+        startActivityForResult( Intent(Intent.ACTION_VIEW).setClassName( applicationContext, classPath ), resultCode)
+        overridePendingTransition(enterAnim, exitAnim)
     }
 
     /**
@@ -125,20 +172,34 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener {
         fragmentTransaction.commit()
     }
 
-    fun AppCompatActivity.addFragment(fragment: Fragment, frameId: Int){
+    fun AppCompatActivity.addFragment(fragment: Fragment, frameId: Int) {
         supportFragmentManager.inTransaction { add(frameId, fragment) }
     }
 
     fun AppCompatActivity.replaceFragment(fragment: Fragment, frameId: Int) {
-        supportFragmentManager.inTransaction{replace(frameId, fragment)}
+        supportFragmentManager.inTransaction { replace(frameId, fragment) }
     }
 
     fun showProgressDialog(supportFragmentManager: FragmentManager?) {
         progressDialog = ProgressDialog.showProgressDialog(supportFragmentManager)
     }
 
-    fun dismissProgressDialog(){
+    fun dismissProgressDialog() {
         progressDialog?.dismiss()
+    }
+
+    fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
+        this.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun afterTextChanged(editable: Editable?) {
+                afterTextChanged.invoke(editable.toString())
+            }
+        })
     }
 
     companion object {

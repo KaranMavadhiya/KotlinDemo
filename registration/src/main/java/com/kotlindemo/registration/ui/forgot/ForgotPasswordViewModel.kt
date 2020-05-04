@@ -8,6 +8,7 @@ import com.kotlindemo.registration.model.request.ForgotPasswordRequestModel
 import com.kotlindemo.utils.LogUtil
 
 class ForgotPasswordViewModel(application: Application) : BaseViewModel(application) {
+    private var tag = ForgotPasswordViewModel::class.java.simpleName
 
     val forgotPasswordRequestModel: ForgotPasswordRequestModel = ForgotPasswordRequestModel()
 
@@ -19,9 +20,9 @@ class ForgotPasswordViewModel(application: Application) : BaseViewModel(applicat
 
         isLoading.value = true
 
-        LogUtil.e("LoginViewModel : ", forgotPasswordRequestModel.email)
-        LogUtil.e("LoginViewModel : ", forgotPasswordRequestModel.platform)
-        LogUtil.e("LoginViewModel : ", forgotPasswordRequestModel.deviceToken)
+        LogUtil.e(tag, forgotPasswordRequestModel.email)
+        LogUtil.e(tag, forgotPasswordRequestModel.deviceType)
+        LogUtil.e(tag, forgotPasswordRequestModel.deviceToken)
 
         Handler().postDelayed({ isLoading.value = false }, 2000)
     }

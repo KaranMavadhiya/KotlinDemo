@@ -15,7 +15,7 @@ object OkHttpClientFactory {
         okHttpInstance.connectTimeout(CONNECTION_TIME_OUT, TimeUnit.MINUTES)
 
         // Add Header if header != null and header.size > 0
-        if (header != null && header.size > 0){
+        if (header != null && header.size > 0) {
             okHttpInstance.addInterceptor { chain ->
                 val builder = chain.request().newBuilder()
                 for ((key, value) in header.entries) {
@@ -36,15 +36,25 @@ object OkHttpClientFactory {
         return okHttpInstance.build()
     }
 
+    /*
+     * default value of header: HashMap<String, String> is null
+     * default value of isDebug: Boolean is false
+     */
     fun getInstance(): OkHttpClient {
-        return getInstance(null,false)
+        return getInstance(null, false)
     }
 
+    /*
+     * default value of header: HashMap<String, String> is null
+     */
     fun getInstance(isDebug: Boolean): OkHttpClient {
-        return getInstance(null,isDebug)
+        return getInstance(null, isDebug)
     }
 
+    /*
+     * default value of isDebug: Boolean is false
+     */
     fun getInstance(header: HashMap<String, String>): OkHttpClient {
-        return getInstance(header,false)
+        return getInstance(header, false)
     }
 }

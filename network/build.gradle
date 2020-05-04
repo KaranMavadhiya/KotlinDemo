@@ -14,11 +14,9 @@ android {
     buildTypes {
         debug {
             minifyEnabled false
-            buildConfigField "String", "API_URL", API_DEVELOPMENT_URL // update url into gradle.properties
         }
         release {
             minifyEnabled true
-            buildConfigField "String", "API_URL", API_LIVE_URL // update url into gradle.properties
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

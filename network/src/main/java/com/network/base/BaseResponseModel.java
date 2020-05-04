@@ -11,6 +11,7 @@ import java.lang.reflect.Type;
 
 public class BaseResponseModel<B> extends ResponseModel{
 
+
     B ResponseJson;
 
     @Expose

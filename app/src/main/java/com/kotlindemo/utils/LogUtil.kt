@@ -1,7 +1,6 @@
 package com.kotlindemo.utils
 
 import android.util.Log
-import com.kotlindemo.BuildConfig
 
 /**
  * A pack of log methods for reading/writing to [Log].
@@ -10,7 +9,7 @@ object LogUtil {
 
     private const val LOG_PREFIX = "LOG_"
     private const val MAX_LOG_SIZE = 2000
-    private var LOG_ENABLED = false
+    private var LOG_ENABLED = true
 
     /**
      * Helper method to write a String value to [Log].
@@ -78,9 +77,5 @@ object LogUtil {
      */
     fun v(tag: String, message: String) {
         if (LOG_ENABLED) Log.v(LOG_PREFIX + tag, message)
-    }
-
-    init {
-        LOG_ENABLED = BuildConfig.DEBUG
     }
 }

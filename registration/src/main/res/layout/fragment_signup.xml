@@ -126,7 +126,8 @@
                 app:boxCornerRadiusBottomEnd="@dimen/dimen_0"
                 app:boxCornerRadiusBottomStart="@dimen/dimen_0"
                 app:boxCornerRadiusTopEnd="@dimen/dimen_0"
-                app:boxCornerRadiusTopStart="@dimen/dimen_0">
+                app:boxCornerRadiusTopStart="@dimen/dimen_0"
+                app:endIconMode="password_toggle">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editPassword"

@@ -14,10 +14,10 @@ android {
 
     buildTypes {
         debug {
-
+            buildConfigField "String", "API_BASE_URL", API_DEVELOPMENT_URL // update url into gradle.properties
         }
         release {
-
+            buildConfigField "String", "API_BASE_URL", API_LIVE_URL // update url into gradle.properties
         }
     }
 

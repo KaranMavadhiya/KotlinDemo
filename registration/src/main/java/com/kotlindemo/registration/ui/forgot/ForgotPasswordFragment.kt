@@ -55,7 +55,7 @@ class ForgotPasswordFragment  : BaseFragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when(v?.id){
-            R.id.headerImageBack -> activity!!.onBackPressed()
+            R.id.headerImageBack -> requireActivity().onBackPressed()
             R.id.buttonSubmit ->{
                 when{
                     validateData() -> {

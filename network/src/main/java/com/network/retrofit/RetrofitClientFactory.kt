@@ -1,33 +1,35 @@
 package com.network.retrofit
 
-import com.network.BuildConfig
 import com.network.okhttp.OkHttpClientFactory
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClientFactory {
 
-    private fun getService(header: HashMap<String, String>?, url: String): Retrofit {
+    private fun getService(  baseUrl: String, header: HashMap<String, String>?, isDebug: Boolean): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(url)
-            .client(OkHttpClientFactory.getInstance(header, BuildConfig.DEBUG))
+            .baseUrl(baseUrl)
+            .client(OkHttpClientFactory.getInstance(header, isDebug))
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 
-    fun <T> getInstance(interfaceClass: Class<T>): T {
-        return getService(null, BuildConfig.API_URL).create(interfaceClass)
+    fun <T> getInstance( baseUrl: String, header: HashMap<String, String>, isDebug: Boolean, interfaceClass: Class<T>): T {
+        return getService(baseUrl, header, isDebug).create(interfaceClass)
     }
 
-    fun <T> getInstance(header: HashMap<String, String>, interfaceClass: Class<T>): T {
-        return getService(header, BuildConfig.API_URL).create(interfaceClass)
+    /*
+     * default value of header: HashMap<String, String> is null
+     * default value of isDebug: Boolean is false
+     */
+    fun <T> getInstance(baseUrl: String, interfaceClass: Class<T>): T {
+        return getService(baseUrl, null, false).create(interfaceClass)
     }
 
-    fun <T> getInstance(url: String, interfaceClass: Class<T>): T {
-        return getService(null, url).create(interfaceClass)
-    }
-
-    fun <T> getInstance(url: String, header: HashMap<String, String>, interfaceClass: Class<T>): T {
-        return getService(header, url).create(interfaceClass)
+    /*
+     * default value of isDebug: Boolean is false
+     */
+    fun <T> getInstance(  baseUrl: String, header: HashMap<String, String>, interfaceClass: Class<T>): T {
+        return getService(baseUrl, header, false).create(interfaceClass)
     }
 }

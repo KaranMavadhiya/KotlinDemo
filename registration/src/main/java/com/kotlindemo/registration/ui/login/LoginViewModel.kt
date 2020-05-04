@@ -7,6 +7,7 @@ import com.kotlindemo.base.BaseViewModel
 import com.kotlindemo.registration.api.NetworkInterceptor
 import com.kotlindemo.registration.model.request.LoginRequestModel
 import com.kotlindemo.registration.model.response.UserModel
+import com.kotlindemo.registration.utils.Constants
 import com.kotlindemo.utils.LogUtil
 import com.network.base.BaseResponseModel
 import com.network.retrofit.RetrofitClientFactory
@@ -30,9 +31,9 @@ class LoginViewModel(application: Application) : BaseViewModel(application) {
     fun apiCallLogin() {
         isLoading.value = true
 
-        // val requestModel = BaseRequestModel("login",Constants.PLATFORM,loginRequestModel)
+        // val requestModel = BaseRequestModel(Constants.DEVICE_TYPE, loginRequestModel.deviceToken, loginRequestModel)
 
-        RetrofitClientFactory.getInstance(NetworkInterceptor::class.java).callLoginApi(loginRequestModel).enqueue(object :
+        RetrofitClientFactory.getInstance(Constants.BASE_URL, NetworkInterceptor::class.java).callLoginApi(loginRequestModel).enqueue(object :
         retrofit2.Callback<BaseResponseModel<UserModel>> {
 
             override fun onFailure(call: Call<BaseResponseModel<UserModel>>, t: Throwable) {
@@ -41,7 +42,7 @@ class LoginViewModel(application: Application) : BaseViewModel(application) {
 
             override fun onResponse(call: Call<BaseResponseModel<UserModel>>, response: Response<BaseResponseModel<UserModel>>) {
                 isLoading.value = false
-                if (response.body()?.status == 1) {
+                if (response.body()?.status == Constants.SUCCESS) {
                     val responseModel =  response.body()?.getResponseModel(UserModel::class.java)
                     userData.value = responseModel
                 }else{

@@ -91,7 +91,7 @@ class LoginFragment  : BaseFragment(), View.OnClickListener {
 
     override fun onClick(view: View?) {
         when(view?.id){
-            R.id.headerImageBack -> activity!!.onBackPressed()
+            R.id.headerImageBack -> requireActivity().onBackPressed()
             R.id.textForgotPassword -> Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
             R.id.textSignUp -> Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_signUpFragment)
             R.id.buttonSubmit ->{
