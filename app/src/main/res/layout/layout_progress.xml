@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:background="@drawable/bg_progress"
     android:gravity="center"
-    android:padding="@dimen/dimen_20">
+    android:padding="@dimen/_16sdp">
 
     <androidx.core.widget.ContentLoadingProgressBar
         style="?android:attr/progressBarStyle"

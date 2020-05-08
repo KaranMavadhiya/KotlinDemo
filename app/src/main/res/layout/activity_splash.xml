@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/imageLogo"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="@dimen/_180sdp"
+        android:layout_height="@dimen/_180sdp"
         android:layout_gravity="center"
         android:contentDescription="@null"
         android:src="@mipmap/ic_launcher"

@@ -33,11 +33,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/inputEmail"
-            style="@style/textInputLayout"
-            app:boxCornerRadiusBottomEnd="@dimen/dimen_0"
-            app:boxCornerRadiusBottomStart="@dimen/dimen_0"
-            app:boxCornerRadiusTopEnd="@dimen/dimen_0"
-            app:boxCornerRadiusTopStart="@dimen/dimen_0">
+            style="@style/textInputLayout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editEmail"
@@ -50,10 +46,6 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/inputPassword"
             style="@style/textInputLayout"
-            app:boxCornerRadiusBottomEnd="@dimen/dimen_0"
-            app:boxCornerRadiusBottomStart="@dimen/dimen_0"
-            app:boxCornerRadiusTopEnd="@dimen/dimen_0"
-            app:boxCornerRadiusTopStart="@dimen/dimen_0"
             app:endIconMode="password_toggle">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -87,7 +79,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:padding="@dimen/dimen_8"
+        android:padding="@dimen/_8sdp"
         android:text="@string/str_don_t_have_an_account"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

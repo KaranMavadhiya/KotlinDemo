@@ -31,11 +31,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputName"
-                style="@style/textInputLayout"
-                app:boxCornerRadiusBottomEnd="@dimen/dimen_0"
-                app:boxCornerRadiusBottomStart="@dimen/dimen_0"
-                app:boxCornerRadiusTopEnd="@dimen/dimen_0"
-                app:boxCornerRadiusTopStart="@dimen/dimen_0">
+                style="@style/textInputLayout">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editName"
@@ -47,11 +43,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputEmail"
-                style="@style/textInputLayout"
-                app:boxCornerRadiusBottomEnd="@dimen/dimen_0"
-                app:boxCornerRadiusBottomStart="@dimen/dimen_0"
-                app:boxCornerRadiusTopEnd="@dimen/dimen_0"
-                app:boxCornerRadiusTopStart="@dimen/dimen_0">
+                style="@style/textInputLayout">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editEmail"
@@ -71,12 +63,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/inputCountryCode"
                     style="@style/textInputLayout"
-                    android:layout_width="wrap_content"
-                    android:layout_marginEnd="@dimen/dimen_0"
-                    app:boxCornerRadiusBottomEnd="@dimen/dimen_0"
-                    app:boxCornerRadiusBottomStart="@dimen/dimen_0"
-                    app:boxCornerRadiusTopEnd="@dimen/dimen_0"
-                    app:boxCornerRadiusTopStart="@dimen/dimen_0">
+                    android:layout_width="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editCountryCode"
@@ -93,11 +80,7 @@
                     android:id="@+id/inputMobileNumber"
                     style="@style/textInputLayout"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
-                    app:boxCornerRadiusBottomEnd="@dimen/dimen_0"
-                    app:boxCornerRadiusBottomStart="@dimen/dimen_0"
-                    app:boxCornerRadiusTopEnd="@dimen/dimen_0"
-                    app:boxCornerRadiusTopStart="@dimen/dimen_0">
+                    android:layout_weight="1">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editMobileNumber"
@@ -115,10 +98,6 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputPassword"
                 style="@style/textInputLayout"
-                app:boxCornerRadiusBottomEnd="@dimen/dimen_0"
-                app:boxCornerRadiusBottomStart="@dimen/dimen_0"
-                app:boxCornerRadiusTopEnd="@dimen/dimen_0"
-                app:boxCornerRadiusTopStart="@dimen/dimen_0"
                 app:endIconMode="password_toggle">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -142,10 +121,6 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputConfirmPassword"
                 style="@style/textInputLayout"
-                app:boxCornerRadiusBottomEnd="@dimen/dimen_0"
-                app:boxCornerRadiusBottomStart="@dimen/dimen_0"
-                app:boxCornerRadiusTopEnd="@dimen/dimen_0"
-                app:boxCornerRadiusTopStart="@dimen/dimen_0"
                 app:endIconMode="password_toggle">
 
                 <com.google.android.material.textfield.TextInputEditText

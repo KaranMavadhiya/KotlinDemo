@@ -14,13 +14,11 @@
         app:popupTheme="@style/AppTheme.PopupOverlay"
         app:theme="@style/AppTheme.AppBarOverlay">
 
-
-
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/headerTextTitle"
             style="@style/textStyle.Title"
             android:textColor="@color/colorWhite"
-            android:padding="@dimen/dimen_16"/>
+            android:padding="@dimen/_8sdp"/>
 
     </androidx.appcompat.widget.Toolbar>
 

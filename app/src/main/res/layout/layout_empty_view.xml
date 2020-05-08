@@ -10,7 +10,7 @@
         android:layout_height="143dp"
         android:layout_centerHorizontal="true"
         android:contentDescription="@null"
-        android:layout_marginTop="@dimen/dimen_10"
+        android:layout_marginTop="@dimen/_8sdp"
         android:src="@drawable/ic_folder_icon" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -18,7 +18,7 @@
         style="@style/textStyle.Medium"
         android:layout_below="@+id/image_folder"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/dimen_10"
+        android:layout_marginTop="@dimen/_8sdp"
         android:text="@string/str_no_data"
         android:gravity="center_horizontal"/>
 
@@ -27,7 +27,7 @@
         style="@style/textStyle.Medium.Bold"
         android:layout_below="@+id/empty_view_tv_message"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/dimen_10"
+        android:layout_marginTop="@dimen/_8sdp"
         android:text="@string/str_tap_to_refresh"/>
 
 </RelativeLayout>
