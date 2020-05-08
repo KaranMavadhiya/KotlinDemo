@@ -6,9 +6,9 @@
             <solid android:color="@color/colorBorder" />
         </shape>
     </item>
-    <item android:bottom="@dimen/dimen_1">
+    <item android:bottom="@dimen/_1sdp">
         <shape android:shape="rectangle">
-            <padding android:bottom="@dimen/dimen_1" />
+            <padding android:bottom="@dimen/_1sdp" />
 
             <solid android:color="@color/colorPrimary" />
         </shape>

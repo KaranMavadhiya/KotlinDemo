@@ -25,7 +25,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_margin="@dimen/dimen_30"
+                android:layout_margin="@dimen/_30sdp"
                 android:contentDescription="@null"
                 android:src="@mipmap/ic_launcher" />
 
@@ -39,11 +39,9 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/textInputEditText"
                     android:hint="@string/str_name"
-                    android:inputType="textPersonName"
-                    android:textSize="@dimen/font_14" />
+                    android:inputType="textPersonName"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -57,11 +55,9 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/textInputEditText"
                     android:hint="@string/str_email_address"
-                    android:inputType="textEmailAddress"
-                    android:textSize="@dimen/font_14" />
+                    android:inputType="textEmailAddress" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -84,14 +80,12 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editCountryCode"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        style="@style/textInputEditText"
                         android:digits="+0123456789"
                         android:ems="6"
                         android:hint="@string/str_code"
                         android:focusable="false"
-                        android:enabled="false"
-                        android:textSize="@dimen/font_14" />
+                        android:enabled="false"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -107,14 +101,12 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editMobileNumber"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        style="@style/textInputEditText"
                         android:digits="0123456789"
                         android:hint="@string/str_mobile_number"
                         android:imeOptions="actionNext"
                         android:inputType="phone"
-                        android:maxLength="15"
-                        android:textSize="@dimen/font_14" />
+                        android:maxLength="15"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -131,12 +123,10 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/textInputEditText"
                     android:hint="@string/str_password"
                     android:imeOptions="actionNext"
-                    android:inputType="textPassword"
-                    android:textSize="@dimen/font_14" />
+                    android:inputType="textPassword" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -144,9 +134,9 @@
                 android:id="@+id/textPasswordHint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dimen_16"
-                android:layout_marginEnd="@dimen/dimen_16"
-                android:textSize="@dimen/font_12"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:textSize="@dimen/_10ssp"
                 android:text="@string/str_password_hint"/>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -160,12 +150,10 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editConfirmPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/textInputEditText"
                     android:hint="@string/str_confirm_password"
                     android:imeOptions="actionDone"
-                    android:inputType="textPassword"
-                    android:textSize="@dimen/font_14" />
+                    android:inputType="textPassword" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -174,9 +162,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/str_terms_and_condition_privacy_policy"
-                android:padding="@dimen/dimen_16"
-                android:textSize="@dimen/font_12"
-                android:lineSpacingMultiplier="1.2"/>
+                android:layout_margin="@dimen/_8sdp"
+                android:padding="@dimen/_8sdp"
+                android:textSize="@dimen/_10ssp"
+                android:lineSpacingMultiplier="1.3"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/buttonSubmit"

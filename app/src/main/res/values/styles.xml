@@ -70,7 +70,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/colorBlack</item>
-        <item name="android:textSize">@dimen/font_12</item>
+        <item name="android:textSize">@dimen/_12sdp</item>
     </style>
 
     <style name="textStyle.Bold">
@@ -81,7 +81,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/colorBlack</item>
-        <item name="android:textSize">@dimen/font_14</item>
+        <item name="android:textSize">@dimen/_14sdp</item>
     </style>
 
     <style name="textStyle.Medium.Bold">
@@ -92,7 +92,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/colorBlack</item>
-        <item name="android:textSize">@dimen/font_18</item>
+        <item name="android:textSize">@dimen/_17sdp</item>
     </style>
 
     <style name="textStyle.Title.Bold">
@@ -102,19 +102,25 @@
     <style name="textInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginStart">@dimen/dimen_16</item>
-        <item name="android:layout_marginEnd">@dimen/dimen_16</item>
-        <item name="android:layout_marginTop">@dimen/dimen_8</item>
-        <item name="android:layout_marginBottom">@dimen/dimen_8</item>
+        <item name="android:layout_marginStart">@dimen/_16sdp</item>
+        <item name="android:layout_marginEnd">@dimen/_16sdp</item>
+        <item name="android:layout_marginTop">@dimen/_8sdp</item>
+        <item name="android:layout_marginBottom">@dimen/_8sdp</item>
+    </style>
+
+    <style name="textInputEditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/_12ssp</item>
     </style>
 
     <style name="buttonStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_margin">@dimen/dimen_30</item>
+        <item name="android:layout_margin">@dimen/_25sdp</item>
         <item name="android:background">@color/colorPrimary</item>
         <item name="android:textColor">@color/colorWhite</item>
-        <item name="android:textSize">@dimen/font_14</item>
+        <item name="android:textSize">@dimen/_12ssp</item>
     </style>
 
 

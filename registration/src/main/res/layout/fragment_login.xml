@@ -41,11 +41,9 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:hint="@string/str_email_address"
                 android:inputType="textEmailAddress"
-                android:textSize="@dimen/font_14" />
+                style="@style/textInputEditText" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -60,12 +58,10 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/textInputEditText"
                 android:hint="@string/str_password"
                 android:imeOptions="actionDone"
-                android:inputType="textPassword"
-                android:textSize="@dimen/font_14" />
+                android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -74,8 +70,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:layout_marginEnd="@dimen/dimen_10"
-            android:padding="@dimen/dimen_8"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:padding="@dimen/_5sdp"
             android:text="@string/str_forgot_password" />
 
 
@@ -96,7 +92,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_margin="@dimen/dimen_20"/>
+        android:layout_margin="@dimen/_16sdp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

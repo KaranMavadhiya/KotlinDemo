@@ -74,6 +74,11 @@ dependencies {
 
     // Google
     api "com.google.code.gson:gson:$gson_version"
+
+    // SSP for font size
+    api 'com.intuit.ssp:ssp-android:1.0.6'
+    // SDP for spacing
+    api 'com.intuit.sdp:sdp-android:1.0.6'
 }
 
 Properties properties = new Properties()
