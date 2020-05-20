@@ -31,12 +31,19 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     // Retrofit dependency
-    api "com.squareup.retrofit2:retrofit:$retrofitVersion"
-    api "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    // api "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
+
+    api "com.squareup.retrofit2:retrofit:$retrofitVersion" // Remove this after integrate moshi
+    api "com.squareup.retrofit2:converter-gson:$retrofitVersion" // Remove this after integrate moshi
     api "com.squareup.okhttp3:logging-interceptor:$retrofitInterceptor"
 
     // Google
-    api "com.google.code.gson:gson:$gsonVersion"
+    api "com.google.code.gson:gson:$gsonVersion" // Remove this after integrate moshi and change accordingly
+
+    // Reference
+    // https://medium.com/swlh/why-i-ditched-beloved-gson-for-my-kotlin-project-4acc1809fb68
+    // https://proandroiddev.com/moshi-with-retrofit-in-kotlin-%EF%B8%8F-a69c2621708b
+    // https://medium.com/@sotti/android-networking-ii-okhttp-retrofit-moshi-and-picasso-c381f6c0efd8
 
     // Annotation
     api "androidx.annotation:annotation:$annotationVersion"

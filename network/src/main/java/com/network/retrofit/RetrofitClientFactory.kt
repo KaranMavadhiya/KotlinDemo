@@ -6,16 +6,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClientFactory {
 
-    private fun getService(  baseUrl: String, header: HashMap<String, String>?, isDebug: Boolean): Retrofit {
+    private fun getService(baseUrl: String, header: HashMap<String, String>?, isDebug: Boolean): Retrofit {
         return Retrofit.Builder()
             .baseUrl(baseUrl)
             .client(OkHttpClientFactory.getInstance(header, isDebug))
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create()) // .addConverterFactory(MoshiConverterFactory.create())
             .build()
-    }
-
-    fun <T> getInstance( baseUrl: String, header: HashMap<String, String>, isDebug: Boolean, interfaceClass: Class<T>): T {
-        return getService(baseUrl, header, isDebug).create(interfaceClass)
     }
 
     /*
@@ -29,7 +25,18 @@ object RetrofitClientFactory {
     /*
      * default value of isDebug: Boolean is false
      */
-    fun <T> getInstance(  baseUrl: String, header: HashMap<String, String>, interfaceClass: Class<T>): T {
+    fun <T> getInstance(baseUrl: String, header: HashMap<String, String>, interfaceClass: Class<T>): T {
         return getService(baseUrl, header, false).create(interfaceClass)
+    }
+
+    /*
+     * default value of header: HashMap<String, String> is null
+     */
+    fun <T> getInstance(baseUrl: String, interfaceClass: Class<T>, isDebug: Boolean): T {
+        return getService(baseUrl, null, isDebug).create(interfaceClass)
+    }
+
+    fun <T> getInstance( baseUrl: String, header: HashMap<String, String>, interfaceClass: Class<T>, isDebug: Boolean): T {
+        return getService(baseUrl, header, isDebug).create(interfaceClass)
     }
 }
