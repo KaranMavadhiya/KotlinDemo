@@ -13,7 +13,7 @@ class SplashActivity : BaseActivity() , Animation.AnimationListener {
 
     private fun performNavigation() {
         startActivity(MainActivity::class.java)
-        finish()
+        finishAffinity()
     }
 
     private fun executeHandler() {
@@ -21,7 +21,7 @@ class SplashActivity : BaseActivity() , Animation.AnimationListener {
         /*
          * Handler is used to set some delay on this screen
          */
-        Handler().postDelayed(Runnable { performNavigation() },delayMillis)
+        Handler().postDelayed({ performNavigation() },delayMillis)
     }
 
     override fun getLayoutRes(): Int {

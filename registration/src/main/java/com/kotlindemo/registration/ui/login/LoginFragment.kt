@@ -12,7 +12,6 @@ import com.kotlindemo.utils.LogUtil
 import com.kotlindemo.utils.ViewUtil
 import com.kotlindemo.utils.preferences.PreferenceConstant
 import com.kotlindemo.utils.preferences.putBoolean
-import com.kotlindemo.utils.toMD5
 import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.layout_registration_header.*
 
@@ -50,7 +49,7 @@ class LoginFragment  : BaseFragment(), View.OnClickListener {
 
         loginViewModel.getUserData().observe(viewLifecycleOwner, Observer {
 
-            it?._id?.let { userId -> LogUtil.d("User userId: ", userId) }
+            it?.id?.let { userId -> LogUtil.d("User userId: ", userId) }
             it?.name?.let { name -> LogUtil.d("User name: ", name) }
             it?.emailId?.let { email -> LogUtil.d("User email: ", email) }
             LogUtil.d("User mobileNumber: ",""+ (it?.mobileNumber ?: ""))
@@ -67,7 +66,7 @@ class LoginFragment  : BaseFragment(), View.OnClickListener {
         }
         editPassword.afterTextChanged {
             inputPassword.isErrorEnabled = false
-            loginViewModel.loginRequestModel.password = it.toMD5() // converted input to MD5 encryption
+            loginViewModel.loginRequestModel.password = it // converted input to MD5 encryption
         }
     }
 
@@ -97,7 +96,7 @@ class LoginFragment  : BaseFragment(), View.OnClickListener {
             R.id.buttonSubmit ->{
                 when{
                     validateData() -> {
-                        loginViewModel.apiCallLogin()
+                        context?.let { loginViewModel.apiCallLogin(it) }
                     }
                 }
             }

@@ -2,7 +2,7 @@ package com.network.retrofit
 
 import com.network.okhttp.OkHttpClientFactory
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 
 object RetrofitClientFactory {
 
@@ -10,7 +10,7 @@ object RetrofitClientFactory {
         return Retrofit.Builder()
             .baseUrl(baseUrl)
             .client(OkHttpClientFactory.getInstance(header, isDebug))
-            .addConverterFactory(GsonConverterFactory.create()) // .addConverterFactory(MoshiConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create())
             .build()
     }
 
