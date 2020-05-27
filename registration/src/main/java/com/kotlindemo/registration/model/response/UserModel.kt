@@ -4,16 +4,22 @@ package com.kotlindemo.registration.model.response
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
-@JsonClass(generateAdapter = true)
 data class UserModel(
     @Json(name = "accessToken")
-    var accessToken: String = "",
+    var accessToken: String,
+
     @Json(name = "emailId")
-    var emailId: String = "",
+    var emailId: String,
+
     @Json(name = "_id")
-    var id: String = "",
+    var id: String,
+
     @Json(name = "mobileNumber")
-    var mobileNumber: Long = 0,
+    var mobileNumber: Long,
+
     @Json(name = "name")
-    var name: String = ""
+    var name: String,
+
+    @Json(name = "dialCode")
+    var dialCode: DialCode?
 )

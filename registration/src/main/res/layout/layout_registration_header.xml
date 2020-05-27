@@ -14,7 +14,7 @@
         app:popupTheme="@style/AppTheme.PopupOverlay"
         app:theme="@style/AppTheme.AppBarOverlay">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/headerImageBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -59,7 +59,6 @@ dependencies {
 
     // Design
     api "androidx.appcompat:appcompat:$appcompat_version"
-    api "com.android.support:design:$design_version"
     api "com.google.android.material:material:$material_version"
 
     // Constraint Layout
@@ -71,9 +70,6 @@ dependencies {
 
     // LiveData & ViewModel
     api "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
-
-    // Google
-    api "com.google.code.gson:gson:$gson_version"
 
     // SSP for font size
     api 'com.intuit.ssp:ssp-android:1.0.6'

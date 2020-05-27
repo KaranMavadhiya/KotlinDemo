@@ -12,6 +12,7 @@ import com.kotlindemo.utils.LogUtil
 import com.kotlindemo.utils.ViewUtil
 import com.kotlindemo.utils.preferences.PreferenceConstant
 import com.kotlindemo.utils.preferences.putBoolean
+import com.kotlindemo.utils.toMD5
 import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.layout_registration_header.*
 
@@ -66,7 +67,7 @@ class LoginFragment  : BaseFragment(), View.OnClickListener {
         }
         editPassword.afterTextChanged {
             inputPassword.isErrorEnabled = false
-            loginViewModel.loginRequestModel.password = it // converted input to MD5 encryption
+            loginViewModel.loginRequestModel.password = it.toMD5() // converted input to MD5 encryption
         }
     }
 

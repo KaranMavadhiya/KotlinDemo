@@ -18,7 +18,7 @@ object OkHttpClientFactory {
         if (header != null && header.size > 0) {
             okHttpInstance.addInterceptor { chain ->
                 val builder = chain.request().newBuilder()
-                for ((key, value) in header.entries) {
+                header.entries.forEach { (key, value) ->
                     builder.addHeader(key, value)
                 }
                 builder.build()

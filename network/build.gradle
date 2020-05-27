@@ -21,10 +21,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
 }
 
-ext.retrofitVersion = '2.6.2'
-ext.retrofitInterceptor = '3.9.1'
+ext.retrofitVersion = '2.9.0'
+ext.retrofitInterceptor = '4.7.2'
 ext.annotationVersion = '1.1.0'
 
 dependencies {

@@ -1,6 +1,8 @@
 package com.network.base
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 class BaseResponseModel<T> {
     @Json(name = "status")
     var status = 0
