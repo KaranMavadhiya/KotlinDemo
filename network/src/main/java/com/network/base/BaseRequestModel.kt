@@ -1,3 +1,14 @@
 package com.network.base
 
-data class BaseRequestModel<T>(var deviceType: String, var deviceToken: String, var data: T)
+import com.squareup.moshi.Json
+
+data class BaseRequestModel<T>(
+    @Json(name = "deviceType")
+    var deviceType: String,
+
+    @Json(name = "deviceToken")
+    var deviceToken: String,
+
+    @Json(name = "data")
+    var data: T
+)
