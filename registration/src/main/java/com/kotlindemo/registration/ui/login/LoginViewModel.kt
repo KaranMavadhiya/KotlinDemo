@@ -6,12 +6,12 @@ import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.kotlindemo.base.BaseViewModel
+import com.kotlindemo.registration.api.NetworkInstance
 import com.kotlindemo.registration.api.NetworkInterceptor
 import com.kotlindemo.registration.model.request.LoginRequestModel
 import com.kotlindemo.registration.model.response.UserModel
 import com.kotlindemo.registration.utils.Constants
 import com.network.base.BaseResponseModel
-import com.network.retrofit.RetrofitClientFactory
 import retrofit2.Call
 import retrofit2.Response
 
@@ -34,7 +34,7 @@ class LoginViewModel(application: Application) : BaseViewModel(application) {
 
         // val requestModel = BaseRequestModel(Constants.DEVICE_TYPE, loginRequestModel.deviceToken, loginRequestModel)
 
-        RetrofitClientFactory.getInstance(Constants.BASE_URL, NetworkInterceptor::class.java,true).callLoginApi(loginRequestModel).enqueue(object :
+        NetworkInstance.getNetworkInterceptor().callLoginApi(loginRequestModel).enqueue(object :
         retrofit2.Callback<BaseResponseModel<UserModel>> {
 
             override fun onFailure(call: Call<BaseResponseModel<UserModel>>, t: Throwable) {
